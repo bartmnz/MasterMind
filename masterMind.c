@@ -112,7 +112,7 @@ void playSelf(char* guess, int* remaining){
 	int* allPossible[OUTCOMES];
 	int j;
 	for (j = 0; j < OUTCOMES; j ++){
-		allPossible[j] = (int*)malloc(TOTAL * sizeof(int));
+		allPossible[j] = malloc(TOTAL * sizeof(int));
 	}
 	int i;
 	int results;
