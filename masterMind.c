@@ -125,7 +125,7 @@ int checkNums(char* theSecret, char* theGuess){
  */
 
 void dumpLine(FILE* filePointer){
-	printf("dumpline");
+
 	int temp = '0';
 	while((temp = fgetc(filePointer)) != EOF && temp != '\n'){
 		/* 
@@ -276,4 +276,4 @@ void asChars(char* asString, int number){
 	else {
 		sprintf(asString, "%d", number);
 	}
-}	
+}
