@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <time.h>
 
 int getGuess(char*);
 int checkNums(char*, char*);
@@ -16,7 +17,8 @@ void printResult(int);
 #define TOTAL 10000
 #define OUTCOMES 14
 
-int main(void){	
+int main(void){
+	srand(time(NULL));	
 	char secretNum[MAXSIZE];
 	char theGuess[MAXSIZE];
 	int temp = rand() % TOTAL;
