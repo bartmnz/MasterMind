@@ -112,7 +112,7 @@ void playSelf(char* guess, int* remaining){
 	int* allPossible[OUTCOMES];
 	int j;
 	for (j = 0; j < OUTCOMES; j ++){
-		allPossible[j] = (int *)malloc(TOTAL * sizeof(int));
+		allPossible[j] = (int*)malloc(TOTAL * sizeof(int));
 	}
 	int i;
 	int results;
@@ -197,6 +197,9 @@ void stillValid(int* array, char* guess, int guessResult){
 		char value[(MAXSIZE-1)];
 		sprintf(value, "%d", i);
 		bool inPlay = (array[i] == 1);
+		if(value == guess){
+			inPlay = false;
+		}
 		bool possible = false;
 		if (inPlay){
 			int checkVal = checkNums(value, guess);
