@@ -12,6 +12,7 @@ int toIndex(int, int);
 void playSelf(char*, int*);
 void stillValid(int*, char*, int);
 void printResult(int);
+void asChars(char*, int);
 
 #define MAXSIZE  5
 #define TOTAL 10000
@@ -22,7 +23,7 @@ int main(void){
 	char secretNum[MAXSIZE];
 	char theGuess[MAXSIZE];
 	int temp = rand() % TOTAL;
-	sprintf(secretNum,"%d", temp);
+	asChars(secretNum, temp);
 	int numGuess=0;
 	int* remaining = malloc(TOTAL * sizeof(int));
 	int i;
@@ -127,9 +128,9 @@ void playSelf(char* guess, int* remaining){
 	for(i = 0; i < TOTAL; i++){
 		if(remaining[i] == 1){
 			for(j = 0; j < TOTAL; j++){
-				sprintf(toString, "%d", j);
+				asChars(toString, j);
 				char remainingStr[(MAXSIZE-1)];
-				sprintf(remainingStr, "%d", i);
+				asChars(remainingStr, i);
 				results = checkNums(remainingStr,toString);
 				allPossible[results][j]++;
 			}
@@ -154,8 +155,8 @@ void playSelf(char* guess, int* remaining){
 	for(j =0; j < OUTCOMES; j++){
 		free(allPossible[j]);
 	}
-	printf("%d\n", nextGuess);
-	sprintf(guess,"%d", nextGuess);
+	asChars(guess, nextGuess);
+	printf("%s\n", guess);
 }
 
 
@@ -197,7 +198,8 @@ void stillValid(int* array, char* guess, int guessResult){
 	int i;
 	for (i =0; i < TOTAL; i++){
 		char value[(MAXSIZE-1)];
-		sprintf(value, "%d", i);
+		asChars(value, i);
+	//	sprintf(value, "%d", i);
 		bool inPlay = (array[i] == 1);
 		if(value == guess){
 			inPlay = false;
@@ -212,3 +214,19 @@ void stillValid(int* array, char* guess, int guessResult){
 		}
 	}
 }
+
+
+void asChars(char* asString, int number){
+	if(number < 10){
+		sprintf(asString, "000%d", number);	
+	}
+	else if(number < 100){
+		sprintf(asString, "00%d", number);
+	}
+	else if(number < 1000){
+		sprintf(asString, "0%d", number);
+	}
+	else {
+		sprintf(asString, "%d", number);
+	}
+}	
