@@ -38,14 +38,25 @@ int main(void){
 		remaining[i] = 1;
 	}
 	while(true){
+		if( numGuess == 0){
+                                fprintf(stdout, "Suggested Guess: 1122\n");
+                        }
 		while(getGuess(theGuess)){
-			fprintf(stderr, "Input %d digits\n", MAXSIZE-1);
+			//if( numGuess == 0){
+			//	fprintf(stdout, "Suggested Guess: 1122\n");
+			//}
+			fprintf(stdout, "Input %d digits\n", MAXSIZE-1);
 		}
 		numGuess++;
 		int result = checkNums(secretNum, theGuess);
 		printResult(result);		
 		if(result == (OUTCOMES -1)){
-			fprintf(stdout, "You win!  It took you %d guesses.\n", numGuess);
+			if( numGuess == 1){
+				fprintf(stdout, "You win!  It took you %d guess.\n", numGuess);
+			}
+			else {
+				fprintf(stdout, "You win!  It took you %d guesses.\n", numGuess);
+			}
 			break;
 		}
 		stillValid(remaining, theGuess, result);
